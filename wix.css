@@ -1,0 +1,41 @@
+/* Wix Studio comparison build.
+   Loaded after styles.css on the /wix pages only. It replaces every effect Wix Studio
+   cannot do natively with the nearest thing it can, so the two builds can be compared
+   side by side. Layout, type, colour and imagery are unchanged. See WIX-STUDIO-NOTES.md. */
+
+/* Entrance animations: Wix "Fade" / "Float" / "Reveal", one element at a time, fired once */
+.wix .hero-h .hl{overflow:visible;clip-path:inset(0 0 100% 0);transform:translateY(24px);transition:clip-path 1.1s var(--ease),transform 1.1s var(--ease)}
+.wix .hero-h .hl+.hl{transition-delay:.18s}
+.wix.js .hero-h .hl{transition-delay:.25s}.wix.js .hero-h .hl+.hl{transition-delay:.43s}
+.wix .ready .hero-h .hl{clip-path:inset(-10% -5% -20% -5%);transform:none}
+.wix.js .words{opacity:0;transform:translateY(24px);transition:opacity 1s var(--ease),transform 1.1s var(--ease)}
+.wix.js .words.in{opacity:1;transform:none}
+
+/* Mission: static two-tone text instead of the word-by-word fill */
+.wix .fill{color:var(--ink)}
+.wix .fill .tone{color:#A9A59F}
+
+/* Dot glyphs and the dot-matrix mark: one fade-in, not dot by dot */
+.wix.js .dots>*{opacity:1;scale:1;transition:none}
+.wix.js .dots{opacity:0;transition:opacity .9s var(--ease) .1s}
+.wix.js .dots.in{opacity:1}
+
+/* Gradients: static fills (Wix radial / fluid gradients) with no grain overlay */
+.wix .grad::after{display:none}
+.wix .bento .tile.grad{animation:none}
+
+/* Glass: Wix "Apply glass effect" is a blur only, no refraction */
+.wix .gl,.wix .gd,.wix .box{-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+
+/* Focus marquee: Wix text marquee, one text style throughout */
+.wix .mq .gtext{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:var(--ink)!important}
+
+/* Method: no scroll-scrubbed pinning; the five stages sit in the grid, all lit */
+.wix .pin-rail{display:none}
+.wix .step .st-tile,.wix .step .tx{filter:none;opacity:1}
+
+/* Nav badge showing which build is on screen (preview only) */
+.ver{margin-left:14px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);white-space:nowrap;padding:5px 9px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line);transform:translateY(0)}
+.brand-wrap{display:flex;align-items:center}
+.brand[title]{cursor:pointer}
+@media (max-width:560px){.ver{display:none}}

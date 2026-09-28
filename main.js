@@ -4,6 +4,8 @@
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fine = matchMedia('(pointer: fine)').matches;
   const still = root.classList.contains('still');          // #still: review captures only
+  // .wix: the Wix Studio comparison build. Only behaviour Wix Studio offers natively runs.
+  const wix = root.classList.contains('wix');
   const saveData = !!(navigator.connection && navigator.connection.saveData);
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -15,7 +17,7 @@
 
   /* ---------- text splitting ---------- */
   // Hero lines: each word rises out of its line mask.
-  $$('.hero-h .hl').forEach((line, li) => {
+  if (!wix) $$('.hero-h .hl').forEach((line, li) => {
     let i = 0;
     const out = [];
     line.childNodes.forEach(n => {
@@ -32,7 +34,7 @@
     line.replaceChildren(...out);
   });
   // Word masks are reserved for the two editorial headlines; other headings use a quiet fade.
-  $$('.words').forEach(el => {
+  if (!wix) $$('.words').forEach(el => {
     const txt = el.textContent.trim();
     el.setAttribute('aria-label', txt);
     el.innerHTML = txt.split(/\s+/).map((w, i) => `<span class="wm" aria-hidden="true"><span class="wi" style="transition-delay:${(i * 0.055).toFixed(3)}s">${w}</span></span>`).join(' ');
@@ -40,7 +42,11 @@
   // Mission statement: words fill from grey to ink as you read down the page.
   const fill = $('.fill');
   let fillWords = [];
-  if (fill) {
+  if (fill && wix) {
+    // Static two-tone text, as Wix rich text would set it.
+    const txt = fill.textContent.trim(), cut = txt.indexOf(' and turn');
+    fill.innerHTML = cut > 0 ? `${txt.slice(0, cut)}<span class="tone">${txt.slice(cut)}</span>` : txt;
+  } else if (fill) {
     const txt = fill.textContent.trim();
     fill.setAttribute('aria-label', txt);
     fill.innerHTML = txt.split(/\s+/).map(w => `<span class="fw" aria-hidden="true">${w}</span>`).join(' ');
@@ -52,7 +58,7 @@
   // Wheel, trackpad and keyboard share one eased feel. Touch stays native. Off for reduced motion.
   let lenis = null;
   const NAV_CLEAR = 96;
-  if (!reduce && !still && window.Lenis) {
+  if (!reduce && !still && !wix && window.Lenis) {
     lenis = new Lenis({ lerp: 0.11, wheelMultiplier: 0.95, smoothWheel: true, syncTouch: false });
     const loop = t => { lenis.raf(t); requestAnimationFrame(loop); };
     requestAnimationFrame(loop);
@@ -153,7 +159,7 @@
 
   /* ---------- impact grid: its gradients drift only while it is on screen ---------- */
   const bento = $('.bento');
-  if (bento && !reduce) new IntersectionObserver(([e]) => bento.classList.toggle('on', e.isIntersecting), { rootMargin: '10% 0px' }).observe(bento);
+  if (bento && !reduce && !wix) new IntersectionObserver(([e]) => bento.classList.toggle('on', e.isIntersecting), { rootMargin: '10% 0px' }).observe(bento);
 
   /* ---------- counters ---------- */
   const cio = new IntersectionObserver((es, obs) => es.forEach(e => {
@@ -166,7 +172,7 @@
     };
     requestAnimationFrame(tick); obs.unobserve(el);
   }), { threshold: 0.6 });
-  if (!reduce && !still) $$('.count').forEach(c => { c.textContent = c.dataset.from || '0'; cio.observe(c); });
+  if (!reduce && !still && !wix) $$('.count').forEach(c => { c.textContent = c.dataset.from || '0'; cio.observe(c); });
 
   /* ---------- accordion ---------- */
   $$('.ai-h').forEach(btn => btn.addEventListener('click', () => {
@@ -277,7 +283,7 @@
   const cta = $('#contact'), ga = cta && $('.ga', cta), gb = cta && $('.gb', cta);
   const method = $('.method'), steps = method ? $$('.step', method) : [], rail = method && $('.pin-rail i', method);
   const pinMQ = matchMedia('(min-width: 1024px) and (min-height: 700px)');
-  const pinned = () => method && !reduce && pinMQ.matches;
+  const pinned = () => method && !reduce && !wix && pinMQ.matches;
   const methodIn = method && $('.method-in', method);
   // The pinned frame is exactly as tall as its content, held centred in the viewport,
   // so the next section follows straight on when the pin releases.
@@ -314,7 +320,7 @@
     if (!reduce) {
       if (heroOn && heroMedia) {
         const heroH = hero.offsetHeight, p = clamp(y / heroH, 0, 1);
-        heroMedia.style.transform = `translate3d(0,${(y * 0.32).toFixed(1)}px,0) scale(${(1 + p * 0.06).toFixed(4)})`;
+        heroMedia.style.transform = wix ? `translate3d(0,${(y * 0.32).toFixed(1)}px,0)` : `translate3d(0,${(y * 0.32).toFixed(1)}px,0) scale(${(1 + p * 0.06).toFixed(4)})`;
         heroIn.style.transform = `translate3d(0,${(y * 0.16).toFixed(1)}px,0)`;
         heroIn.style.opacity = (1 - clamp((p - 0.22) / 0.6, 0, 1)).toFixed(3);
       }
@@ -362,7 +368,7 @@
   frame();
 
   // Gradient fields: a soft highlight follows the pointer.
-  if (fine && !reduce) $$('.tile.grad, .ai .im, .st-tile, .pf-card .grad').forEach(t => {
+  if (fine && !reduce && !wix) $$('.tile.grad, .ai .im, .st-tile, .pf-card .grad').forEach(t => {
     t.addEventListener('pointermove', e => {
       const r = t.getBoundingClientRect();
       t.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
