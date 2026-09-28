@@ -35,7 +35,7 @@ A nav · B hero film · C focus marquee · D mission · E specimen band (with po
 - Hero: the film settles from 1.08x and the headline words rise, then the button, paragraph and finally the "Med-tech venture builders since 1997" label (1.75s). On scroll the film drifts and the copy lifts and fades.
 - Word masks are kept for the two editorial headlines. Section headings use a quieter fade, so motion falls away after the hero.
 - Method: on screens 1024x700 and larger the section pins while the five stages light in turn and stay lit, with a progress rail. Smaller screens show a normal grid (5 across, 2 + 3 on tablets, stacked on phones).
-- VI dot glyphs and the dot-matrix mark assemble dot by dot as they arrive.
+- VI dot glyphs assemble dot by dot as they arrive.
 - The mission statement fills from grey to ink as it is read.
 - Smooth scroll: Lenis 1.1.20 (MIT, vendored in `assets/vendor`). Wheel, trackpad and keyboard (arrows, Page Up and Down, Space, Home, End) share the same easing. Touch stays native. The drawer pauses it.
 - The focus marquee loops every 110s. The logo marquee loops every 60s and pauses on hover.

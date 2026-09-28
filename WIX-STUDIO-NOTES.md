@@ -33,7 +33,7 @@ Click the logo to switch between them on any page. A badge beside the logo shows
 | Focus marquee | **Text marquee** element with a circle-plus separator icon, slow speed and no pause on hover. |
 | Dashed grid | Vertical line elements on the section grid. |
 | Mission | Rich text with two colours, and a **Fade** entrance. The dot glyph is an SVG image. |
-| Cells band | Section with a **video background** (Adobe Stock 812350176) and a white gradient overlay. The dot-matrix mark is an SVG image with a Fade entrance. The logo strip is a **Pro Gallery slider** set to continuous autoplay. |
+| Cells band | Section with a **video background** (Adobe Stock 812350176) and a white gradient overlay. The logo strip is a **Pro Gallery slider** set to continuous autoplay. |
 | Method | Five containers with **radial or fluid gradient** backgrounds, white line drawings as SVG images, and **Reveal** entrances staggered by about 0.08s. |
 | Research-bench band | Image background with **Parallax**. The status bar is a container with **Apply glass effect** turned on. |
 | Case studies | Native **Accordion** element. Each open panel holds a gradient container with the drawing and outcome. |

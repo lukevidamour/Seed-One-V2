@@ -389,19 +389,15 @@ p{text-wrap:pretty}
 /* Capture mode for review screenshots (#still): skip transitions */
 .still *,.still *::before{transition-duration:0s!important;transition-delay:0s!important}
 
-/* VI dot-matrix detail: a quiet signature above the two editorial headlines */
-.mx{display:block;height:clamp(28px,2.6vw,38px);width:auto;aspect-ratio:381/59;margin-bottom:clamp(24px,2.4vw,34px);fill:currentColor}
-.band-t .mx{color:var(--ink)}
-.full-t .mx{color:#fff}
 
 /* VI dot glyph under each numbered section label */
 .lg{display:block;width:clamp(20px,1.7vw,26px);height:clamp(20px,1.7vw,26px);margin-top:clamp(14px,1.4vw,20px);fill:var(--ink)}
 .cta-top .lg{margin-bottom:0}
 
-/* Dot glyphs and the dot-matrix mark assemble dot by dot as they arrive (once) */
+/* Dot glyphs assemble dot by dot as they arrive (once) */
 .js .dots>*{transform-box:fill-box;transform-origin:center;opacity:0;scale:.25;transition:opacity .45s var(--ease),scale .8s cubic-bezier(.34,1.56,.64,1);transition-delay:calc(var(--d) * 45ms + .1s)}
 .js .dots.in>*{opacity:1;scale:1}
-.js .mx.dots>*{transition-delay:calc(var(--d) * 70ms + .15s)}
+
 
 /* Footer video control: pauses every background video on the page */
 .vid-toggle{font:inherit;font-size:13px;color:var(--body);padding:6px 0;margin-left:28px;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .5s var(--ease)}
