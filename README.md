@@ -63,7 +63,7 @@ A nav · B hero film · C focus marquee · D mission · E specimen band (with po
 - The research-bench band still says "Now reviewing technologies".
 
 ## Media
-- Hero: Banner Video 5 (Premiere edit, 29 Sep 2026), 1920x1080 with audio removed, plus a 1280 version for phones. The finale reuses it very faintly. The hero overlay is tuned so the white type clears WCAG contrast on the brightest shots (headline at least 5:1, small text at least 6.5:1).
+- Hero: Banner 6 (Premiere edit, 29 Sep 2026; the volvox and green-cell shots darkened for legibility), 1920x1080 with audio removed, plus a 1280 version for phones. The finale reuses it very faintly. White hero type clears WCAG contrast on every clip with the standard overlay (headline at least 3.5:1, small text at least 5:1).
 - Specimen band: Adobe Stock 812350176 (dividing cells).
 - Research-bench still: Unsplash (National Cancer Institute), free commercial licence. Credit in `assets/img/credits.json`.
 - Portfolio logos were supplied by the client as raster screenshots. Request vector logos for production. Elusys has no logo, so it is set as a wordmark.
