@@ -31,6 +31,7 @@ A nav · B hero film · C focus marquee · D mission · E specimen band (with po
 - **Set `data-endpoint` on `<form class="enq">`** (in `index.html`, then rebuild the pages) to the form service URL, for example Formspree or a Wix Velo function. It posts JSON. Until it is set, the form shows its success state without sending anything, so the flow can be reviewed.
 
 ## Motion
+- Nav: always visible (client request, Oct 2026). It tightens by 20px once you scroll and gains a hairline past the film.
 - Every entrance fires once. Only transform, opacity and clip-path animate, on one ease curve `cubic-bezier(.16,1,.3,1)`.
 - Hero: the film settles from 1.08x and the headline words rise, then the button, paragraph and finally the "Med-tech venture builders since 1997" label (1.75s). On scroll the film drifts and the copy lifts and fades.
 - Word masks are kept for the two editorial headlines. Section headings use a quieter fade, so motion falls away after the hero.
@@ -38,7 +39,7 @@ A nav · B hero film · C focus marquee · D mission · E specimen band (with po
 - VI dot glyphs assemble dot by dot as they arrive.
 - The mission statement fills from grey to ink as it is read.
 - Smooth scroll: Lenis 1.1.20 (MIT, vendored in `assets/vendor`). Wheel, trackpad and keyboard (arrows, Page Up and Down, Space, Home, End) share the same easing. Touch stays native. The drawer pauses it.
-- The focus marquee loops every 110s. The logo marquee loops every 60s and pauses on hover.
+- The focus marquee loops every 26s at half its original size (client request). The logo marquee loops every 60s and pauses on hover.
 - `prefers-reduced-motion` turns all of it off, including smooth scroll, pinning and autoplay.
 - The footer's "Pause videos" control stops all background videos and remembers the choice (WCAG 2.2.2).
 
@@ -66,4 +67,4 @@ A nav · B hero film · C focus marquee · D mission · E specimen band (with po
 - Hero: Banner 6 (Premiere edit, 29 Sep 2026; the volvox and green-cell shots darkened for legibility), 1920x1080 with audio removed, plus a 1280 version for phones. The finale reuses it very faintly. White hero type clears WCAG contrast on every clip with the standard overlay (headline at least 3.5:1, small text at least 5:1).
 - Specimen band: Adobe Stock 812350176 (dividing cells).
 - Research-bench still: Unsplash (National Cancer Institute), free commercial licence. Credit in `assets/img/credits.json`.
-- Portfolio logos were supplied by the client as raster screenshots. Request vector logos for production. Elusys has no logo, so it is set as a wordmark.
+- Portfolio logos were supplied by the client as raster screenshots. Request vector logos for production. The Elusys logo is the SVG from elusys.com with its white lettering and swirl set in charcoal for light backgrounds (assets/logos/logo-elusys.svg).

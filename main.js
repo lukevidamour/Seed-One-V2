@@ -306,14 +306,11 @@
     ticking = false;
     const y = scrollY;
 
-    // nav: shadow once past the film; tucks away on the way down, returns on the way up
+    // nav: stays put; tightens once you scroll and gains a hairline past the film
     if (nav) {
       const threshold = hero ? hero.offsetHeight : 120;
       nav.classList.toggle('solid', y > threshold - 90);
-      if (!nav.classList.contains('open')) {
-        if (y > threshold && y > lastY + 6 && !navHidden) { nav.classList.add('hide'); navHidden = true; }
-        else if ((y < lastY - 6 || y < threshold) && navHidden) { nav.classList.remove('hide'); navHidden = false; }
-      }
+      nav.classList.toggle('compact', y > 40);          // always visible; tightens by 20px once you scroll
     }
     lastY = y;
 
