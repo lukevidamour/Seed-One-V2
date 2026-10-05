@@ -293,7 +293,12 @@
     method.style.setProperty('--pin-h', h + 'px');
     method.style.setProperty('--pt', Math.max(84, Math.round((innerHeight - h) / 2 + 20)) + 'px');
   };
-  const setPin = () => { root.classList.toggle('pin-on', !!pinned()); sizePin(); };
+  // Pin only when the whole section fits on screen under the nav; otherwise it stays a normal grid.
+  const setPin = () => {
+    root.classList.toggle('pin-on', !!pinned());
+    if (root.classList.contains('pin-on') && methodIn && methodIn.offsetHeight + 84 > innerHeight) root.classList.remove('pin-on');
+    sizePin();
+  };
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(sizePin);
   setPin(); pinMQ.addEventListener('change', () => { setPin(); onScroll(); });
 
@@ -361,7 +366,7 @@
   };
   const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(frame); } };
   addEventListener('scroll', onScroll, { passive: true });
-  addEventListener('resize', () => { vh = innerHeight; lastStep = -1; sizePin(); onScroll(); });
+  addEventListener('resize', () => { vh = innerHeight; lastStep = -1; setPin(); onScroll(); });
   frame();
 
   // Gradient fields: a soft highlight follows the pointer.

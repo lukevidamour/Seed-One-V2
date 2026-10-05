@@ -35,13 +35,16 @@ A nav · B hero film · C focus marquee · D mission · E specimen band (with po
 - Every entrance fires once. Only transform, opacity and clip-path animate, on one ease curve `cubic-bezier(.16,1,.3,1)`.
 - Hero: the film settles from 1.08x and the headline words rise, then the button, paragraph and finally the "Med-tech venture builders since 1997" label (1.75s). On scroll the film drifts and the copy lifts and fades.
 - Word masks are kept for the two editorial headlines. Section headings use a quieter fade, so motion falls away after the hero.
-- Method: on screens 1024x700 and larger the section pins while the five stages light in turn and stay lit, with a progress rail. Smaller screens show a normal grid (5 across, 2 + 3 on tablets, stacked on phones).
+- Method: on screens 1024 wide and up the section pins while the five stages light in turn and stay lit, with a progress rail. While pinned it is sized to the screen height, and it only pins when the whole section fits, so it works on 1280x720 to 2560x1440 laptops and monitors. Otherwise it is a normal grid. Smaller screens show a normal grid (5 across, 2 + 3 on tablets, stacked on phones).
 - VI dot glyphs assemble dot by dot as they arrive.
 - The mission statement fills from grey to ink as it is read.
 - Smooth scroll: Lenis 1.1.20 (MIT, vendored in `assets/vendor`). Wheel, trackpad and keyboard (arrows, Page Up and Down, Space, Home, End) share the same easing. Touch stays native. The drawer pauses it.
 - The focus marquee loops every 26s at half its original size (client request). The logo marquee loops every 60s and pauses on hover.
 - `prefers-reduced-motion` turns all of it off, including smooth scroll, pinning and autoplay.
 - The footer's "Pause videos" control stops all background videos and remembers the choice (WCAG 2.2.2).
+
+## Responsive
+Checked at 320x568, 375x667, 390x844, 430x932, 600x960, 768x1024, 820x1180, 1024x768, 1180x820, 1280x800, 1366x768, 1440x900, 1680x1050, 1920x1080, 2560x1440 and phones held sideways (844x390, 667x375). There is no sideways scrolling, nothing off screen, no text under 12px and no tap target under 24px. The hero statement and button fit the first screen at every size, with a compact hero for phones held sideways.
 
 ## Design system
 - Colour appears only as single-hue gradient fields: green, orange or purple, each with white and a deeper and paler tone of itself, never mixed. Only the impact grid's gradients drift, and only while it is on screen (registered CSS properties; older browsers show them static). Every other field is static, each with its own fixed arrangement.

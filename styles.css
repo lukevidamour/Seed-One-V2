@@ -351,7 +351,7 @@ p{text-wrap:pretty}
   .menu{color:var(--ink);display:flex;flex-direction:column;pointer-events:auto;max-width:520px;margin:10px 0 0 auto;border-radius:28px;background:rgba(255,255,255,.96);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);padding:14px;box-shadow:0 30px 60px -30px rgba(35,31,32,.4);transform-origin:top right;transform:scale(.96) translateY(-8px);opacity:0;visibility:hidden;transition:opacity .4s var(--ease),transform .5s var(--ease),visibility 0s .5s}
   .menu a{font-size:26px;letter-spacing:-.03em;padding:12px 14px;border-radius:16px}
   .nav.open .menu{opacity:1;visibility:visible;transform:none;transition-delay:0s}
-  .hero{min-height:640px}
+  .hero{min-height:520px}
   .hero-in{padding-bottom:28px}
   .hero-h .hl{white-space:normal}
   .band-logos{grid-template-columns:1fr;gap:10px;align-content:center;height:130px}
@@ -420,6 +420,14 @@ p{text-wrap:pretty}
   .pin-on .step.lit .st-tile{filter:none;opacity:1}
   .pin-on .step.lit .tx{opacity:1}
   .pin-on .step.now .st-tile .num{transform:translateY(-8px)}
+  /* While pinned, the section is sized to the screen height so it fits on laptops */
+  .pin-on .method .ph{padding-bottom:min(clamp(36px,3.5vw,50px),4.6vh)}
+  .pin-on .method .ph h2{font-size:min(clamp(44px,6.1vw,96px),9.8vh);margin-top:min(24px,2.6vh)}
+  .pin-on .method .lg{margin-top:min(clamp(14px,1.4vw,20px),2.2vh)}
+  .pin-on .st-tile{height:min(clamp(200px,18.8vw,290px),30vh)}
+  .pin-on .st-tile .num{font-size:min(clamp(56px,6.2vw,96px),9.9vh)}
+  .pin-on .step .tx{padding:min(26px,2.9vh) 26px min(60px,4.2vh)}
+  .pin-on .step h3{margin-bottom:min(12px,1.3vh)}
 }
 
 /* Enquiry drawer */
@@ -604,6 +612,17 @@ p{text-wrap:pretty}
 
 /* Elusys logo is a wide SVG; match the optical size of the raster logos */
 .marq-track .lg-elusys{height:clamp(30px,2.6vw,40px)}
+
+/* Phones held sideways: keep the whole hero statement on screen */
+@media (max-height:500px) and (orientation:landscape){
+  .hero{min-height:0;height:100svh}
+  .hero-in{padding-bottom:20px}
+  .kick{margin-bottom:10px}
+  .hero-h{font-size:clamp(32px,5.4vw,44px)}
+  .hero-p{font-size:15px;margin-top:12px;max-width:40em}
+  .hero-cta{margin-top:16px}
+  .hero-cta .pill{height:46px}
+}
 
 /* ---------- preview gate (added by tools/deploy_preview.py; not part of the handover) ---------- */
 .gate{display:none}
