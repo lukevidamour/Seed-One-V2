@@ -46,6 +46,14 @@ A nav · B hero film · C focus marquee · D mission · E specimen band (with po
 ## Responsive
 Checked at 320x568, 375x667, 390x844, 430x932, 600x960, 768x1024, 820x1180, 1024x768, 1180x820, 1280x800, 1366x768, 1440x900, 1680x1050, 1920x1080, 2560x1440 and phones held sideways (844x390, 667x375). There is no sideways scrolling, nothing off screen, no text under 12px and no tap target under 24px. The hero statement and button fit the first screen at every size, with a compact hero for phones held sideways.
 
+## Scroll performance
+- Only the video on screen plays (the hero film included), so off-screen films stop decoding while you scroll.
+- Images decode about one and a half screens before they arrive, so nothing decodes mid-scroll.
+- The pinned method stages fade in with opacity only, with no colour filter, so the tiles never repaint.
+- Gradient grain uses normal blending, not a blend mode, so the browser can reuse cached layers.
+- The research-bench bar uses a lighter blur, and its status dot pulses with transform and opacity instead of a shadow.
+- Full-bleed sections contain their own repaints, and the moving media sit on their own layers.
+
 ## Design system
 - Colour appears only as single-hue gradient fields: green, orange or purple, each with white and a deeper and paler tone of itself, never mixed. Only the impact grid's gradients drift, and only while it is on screen (registered CSS properties; older browsers show them static). Every other field is static, each with its own fixed arrangement.
 - White line drawings, one per tile, all bleed in from the top right at the same scale.

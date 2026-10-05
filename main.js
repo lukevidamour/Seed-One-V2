@@ -134,19 +134,28 @@
   if (toggle) toggle.addEventListener('click', () => { setPaused(!paused); store.set('so-videos', paused ? 'paused' : 'playing'); });
   setPaused(paused);
 
-  // Section videos load only near the viewport and pause when away.
-  const lazyV = $$('.lazy-video');
-  if (lazyV.length && !reduce && !saveData) {
+  // Every video plays only while near the viewport (the hero film included), so off-screen
+  // films stop decoding while you scroll. Section films also load only when first approached.
+  if (!reduce && !saveData) {
     const vio = new IntersectionObserver(es => es.forEach(e => {
       const v = e.target;
       v.dataset.near = e.isIntersecting ? '1' : '0';
       if (e.isIntersecting) {
-        if (!v.dataset.loaded) { v.preload = 'auto'; v.load(); v.dataset.loaded = '1'; }
+        if (v.classList.contains('lazy-video') && !v.dataset.loaded) { v.preload = 'auto'; v.load(); v.dataset.loaded = '1'; }
         if (!paused) v.play().catch(() => {});
       } else v.pause();
-    }), { rootMargin: '25% 0px' });
-    lazyV.forEach(v => vio.observe(v));
+    }), { rootMargin: '40% 0px' });
+    vids.forEach(v => vio.observe(v));
   }
+
+  // Decode images well before they scroll into view, so they never decode mid-scroll.
+  const dio = new IntersectionObserver((es, obs) => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    const img = e.target; img.loading = 'eager';
+    if (img.decode) img.decode().catch(() => {});
+    obs.unobserve(img);
+  }), { rootMargin: '150% 0px' });
+  $$('img[loading="lazy"]').forEach(i => { i.decoding = 'async'; dio.observe(i); });
 
   /* ---------- reveals: every entrance fires once ---------- */
   // A clipped element has no visible area to intersect, so clip reveals watch their parent.
