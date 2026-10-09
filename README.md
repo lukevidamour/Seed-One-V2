@@ -20,6 +20,9 @@ form, dot glyphs and line drawings from `index.html`, so edit those on the homep
 
     python3 tools/build_pages.py
 
+## Share cards and icons
+Every page has its own 1200x630 share card in `assets/og/` (the homepage film frame and statement, or the page's own header), plus full Open Graph and Twitter tags with absolute URLs. `python3 tools/make_og.py` re-renders the cards, the Apple touch icon and the PNG favicon from the site's own styles (needs Google Chrome); run it after changing a page header.
+
 ## Shareable preview
 `python3 tools/deploy_preview.py` copies the site into `../Deploy PX3` (its own git repository, published with GitHub Pages) and adds the "theshed" review gate to every page. The gate lives only in the preview; this folder stays gate-free for the developer.
 
@@ -67,7 +70,7 @@ Checked at 320x568, 375x667, 390x844, 430x932, 600x960, 768x1024, 820x1180, 1024
 ## Before launch
 - Set the form endpoint (above).
 - Remove `<meta name="robots" content="noindex, nofollow">` from every page (run the generator after editing it in `tools/build_pages.py` too).
-- Make `og:image` an absolute URL once the domain is known (`assets/og-image.jpg`, 1200x630).
+- Confirm the domain. Canonical links, `og:url` and the share images use `https://www.seedone.com/` (`SITE_URL` in `tools/build_pages.py`, and the homepage head in `index.html`). If the site launches elsewhere, change both and rebuild.
 - Replace `privacy.html` and `terms.html` with the real policies.
 - `#still` in a URL is a review-capture mode (no transitions, no smooth scroll). Harmless; can be removed.
 
