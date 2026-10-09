@@ -611,22 +611,50 @@ p{text-wrap:pretty}
 .wwd-close blockquote p{font-size:var(--h1);letter-spacing:-.055em;line-height:.98;max-width:13em;margin:0 auto}
 .close-b{display:flex;justify-content:center;align-items:center;gap:28px;flex-wrap:wrap;margin-top:clamp(30px,3.2vw,46px)}
 
-/* Team: a sticky portrait on the left third, the full bio on the right */
-.people{padding-bottom:clamp(60px,6vw,90px)}
-.row2{position:relative;display:grid;grid-template-columns:2fr 4fr;padding:clamp(40px,4.4vw,64px) 0 clamp(56px,6vw,90px)}
-.row2 .tm-line{position:absolute;left:0;right:0;top:0}
-.row2:has(.fade-h.in) .tm-line::after{transform:scaleX(.34)}
-.row2:hover .tm-line::after{transform:scaleX(1);transition-duration:1s;transition-delay:0s}
-.row2-side{align-self:start;position:sticky;top:110px;padding-right:clamp(24px,3vw,48px)}
-.row2-copy p{font-size:clamp(16px,1.2vw,18px);line-height:1.6;color:var(--body);max-width:38em;margin-bottom:1em}
-.row2-copy p:first-child{font-size:clamp(19px,1.55vw,22px);line-height:1.42;letter-spacing:-.012em;color:var(--ink);max-width:32em}
-.person-photo{border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/5;max-width:320px;background:var(--base)}
-.person-photo img{width:100%;height:100%;object-fit:cover}
-.person .n{color:var(--mid)}
-.person h3{font-size:clamp(28px,2.6vw,40px);letter-spacing:-.045em;line-height:1.02;margin-top:clamp(14px,1.6vw,22px)}
-.person .role{margin-top:14px;color:rgba(35,31,32,.72);display:flex;align-items:center;gap:10px}
-.person .role::before{content:"";width:16px;height:16px;border-radius:50%;flex:none;background:linear-gradient(135deg,var(--t1),var(--c3))}
-.person-bio{margin-top:clamp(26px,2.8vw,40px)}
+/* Team: four portrait cards, staggered. Portraits sit tinted into their colour field and warm to full colour on hover;
+   the full bio opens in a side panel (the enquiry drawer's sibling). */
+.people{padding-bottom:clamp(90px,9vw,140px)}
+.crew{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,1.8vw,26px);align-items:start}
+.mate{position:relative}
+.crew .mate:nth-child(2){transition-delay:.08s}.crew .mate:nth-child(3){transition-delay:.16s}.crew .mate:nth-child(4){transition-delay:.24s}
+.mate-ph{display:block;aspect-ratio:4/5;border-radius:var(--r-lg)}
+.mate-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .9s var(--ease),transform 1.4s var(--ease)}
+.mate-ph .g{filter:grayscale(1) contrast(1.06) brightness(1.06);mix-blend-mode:multiply}
+.mate-ph .c{opacity:0}
+.mate:hover .mate-ph .c,.mate:focus-within .mate-ph .c{opacity:1}
+.mate:hover .mate-ph img{transform:scale(1.035)}
+.mate-x{position:absolute;right:14px;bottom:14px;z-index:2;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.82);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:background .4s var(--ease),color .4s var(--ease),transform .6s var(--ease)}
+.mate-x svg{width:16px;height:16px}
+.mate:hover .mate-x{background:var(--ink);color:#fff;transform:rotate(90deg)}
+.mate-meta{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:20px}
+.mate-meta .n{color:var(--mid)}
+.mate .role,.bio .role{color:rgba(35,31,32,.72);display:flex;align-items:center;gap:10px}
+.mate .role::before,.bio .role::before{content:"";width:12px;height:12px;border-radius:50%;flex:none;background:linear-gradient(135deg,var(--t1),var(--c3))}
+.mate h3{font-size:var(--h3);letter-spacing:-.04em;line-height:1.05;margin-top:14px}
+.mate-b{text-align:left;letter-spacing:inherit}
+.mate-b::after{content:"";position:absolute;inset:0;z-index:3;border-radius:var(--r-lg)}
+.mate-b:focus-visible{outline:0}.mate-b:focus-visible::after{outline:2px solid var(--ink);outline-offset:6px}
+.mate-sum{font-size:15px;line-height:1.45;color:var(--body);margin-top:12px;max-width:24em}
+.mate-bio{margin-top:18px;font-size:15px;line-height:1.55;color:var(--body)}.mate-bio p+p{margin-top:.8em}
+.js .mate-bio{display:none}
+@media (min-width:1024px){.crew .mate:nth-child(even){margin-top:clamp(48px,5.5vw,88px)}}
+
+.bio{width:min(700px,100vw)}
+.bio .drawer-in{transition:opacity .26s ease}
+.bio .drawer-in.swap{opacity:0}
+.bio-head{display:grid;grid-template-columns:clamp(120px,22vw,168px) 1fr;gap:clamp(20px,2.6vw,32px);align-items:end;margin-top:clamp(36px,4.4vw,56px)}
+.bio-ph{aspect-ratio:4/5;border-radius:18px;overflow:hidden;background:var(--base)}
+.bio-ph img{width:100%;height:100%;object-fit:cover}
+.bio h2{font-size:clamp(30px,3.4vw,44px);letter-spacing:-.045em;line-height:1.02;margin:0 0 14px;max-width:none}
+.bio-body{margin-top:clamp(28px,3.2vw,40px)}
+.bio-body p{font-size:16px;line-height:1.6;color:var(--body);margin-bottom:1em}
+.bio-body p:first-child{font-size:clamp(19px,1.6vw,22px);line-height:1.42;letter-spacing:-.012em;color:var(--ink)}
+.bio-next{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;text-align:left;margin-top:clamp(28px,3vw,40px);padding:22px 0 4px;border-top:1px solid var(--line)}
+.bio-next .mono{display:block;color:var(--mid)}
+.bio-next .t{display:block;font-size:clamp(22px,2vw,28px);letter-spacing:-.035em;margin-top:8px}
+.bio-next .x{width:52px;height:52px;border-radius:50%;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;transition:transform .5s var(--ease),background .4s var(--ease)}
+.bio-next .x svg{width:18px;height:18px}
+.bio-next:hover .x{transform:translateX(4px);background:var(--green)}
 
 /* Portfolio: the homepage case-study accordion, one row per company */
 .pf-card.off{display:none}
@@ -647,12 +675,10 @@ p{text-wrap:pretty}
   .areas3{grid-template-columns:1fr 1fr}.areas3 .tile:last-child{grid-column:1/-1}
 }
 @media (max-width:900px){
-  .split,.row2{grid-template-columns:1fr}
-  .split{gap:22px}.row2{gap:28px}
-  .split-l .stick,.row2-side{position:static}
+  .split{grid-template-columns:1fr;gap:22px}
+  .split-l .stick{position:static}
   .split-l h2{max-width:none}
-  .row2-side{padding-right:0}
-  .person-photo{max-width:260px}
+  .crew{grid-template-columns:1fr 1fr}
   .speed-cols{grid-template-columns:1fr}
   .phero-row{grid-template-columns:1fr;gap:18px}
   .pf-acc .ai-h .yr{display:none}
@@ -664,6 +690,9 @@ p{text-wrap:pretty}
   .areas3,.crit{grid-template-columns:1fr}
   .crit li{min-height:0;gap:28px}
   .apart li{grid-template-columns:40px 1fr}
+  .crew{gap:28px 12px}.mate h3{font-size:21px}.mate-sum{font-size:14px}.mate-x{width:36px;height:36px;right:10px;bottom:10px}
+  .mate-meta{flex-direction:column;align-items:flex-start;gap:6px;margin-top:14px}
+  .bio-head{grid-template-columns:110px 1fr}
 }
 
 /* Gradient motion is reserved for the impact grid: it drifts only while on screen. Every other field is static. */

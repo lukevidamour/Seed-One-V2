@@ -203,33 +203,65 @@
     }));
   }
 
-  /* ---------- enquiry: drawer and form ---------- */
-  const drawer = $('#enquire');
+  /* ---------- side panels: the enquiry drawer and the team bios share one open/close ---------- */
   let opener = null;
-  const openDrawer = () => {
-    if (!drawer || drawer.open) return;
-    opener = document.activeElement;
+  const openDlg = (d, focusEl, from) => {
+    if (!d || d.open) return;
+    opener = from || document.activeElement;
     closeMenu();
-    drawer.classList.remove('closing');
-    drawer.showModal();
+    d.classList.remove('closing');
+    d.showModal();
     if (lenis) lenis.stop();
     root.classList.add('drawer-open');
-    const first = $('input:not([type=radio]), textarea', drawer);
-    setTimeout(() => first && first.focus({ preventScroll: true }), reduce ? 0 : 320);
+    setTimeout(() => { const f = focusEl && focusEl(); if (f) f.focus({ preventScroll: true }); }, reduce ? 0 : 320);
   };
-  const closeDrawer = () => {
-    if (!drawer || !drawer.open || drawer.classList.contains('closing')) return;
-    const done = () => { drawer.classList.remove('closing'); drawer.close(); root.classList.remove('drawer-open'); if (lenis) lenis.start(); if (opener) opener.focus({ preventScroll: true }); };
+  const closeDlg = d => {
+    if (!d || !d.open || d.classList.contains('closing')) return;
+    const done = () => { d.classList.remove('closing'); d.close(); root.classList.remove('drawer-open'); if (lenis) lenis.start(); if (opener) opener.focus({ preventScroll: true }); opener = null; };
     if (reduce) { done(); return; }
-    drawer.classList.add('closing');
+    d.classList.add('closing');
     setTimeout(done, 420);
   };
+  $$('dialog.drawer').forEach(d => {
+    $('.drawer-x', d).addEventListener('click', () => closeDlg(d));
+    d.addEventListener('cancel', e => { e.preventDefault(); closeDlg(d); });           // Esc
+    d.addEventListener('click', e => { if (e.target === d) closeDlg(d); });            // backdrop
+  });
+
+  const drawer = $('#enquire');
+  const openDrawer = () => openDlg(drawer, () => $('input:not([type=radio]), textarea', drawer));
   if (drawer) {
     $$('[data-enquire]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); openDrawer(); }));
-    $('.drawer-x', drawer).addEventListener('click', closeDrawer);
-    drawer.addEventListener('cancel', e => { e.preventDefault(); closeDrawer(); });           // Esc
-    drawer.addEventListener('click', e => { if (e.target === drawer) closeDrawer(); });       // backdrop
     if (location.hash === '#enquire') openDrawer();
+  }
+
+  /* team bios: each card opens its full bio in the side panel, with a link on to the next person */
+  const bio = $('#bio'), mates = $$('.mate');
+  if (bio && mates.length) {
+    const HUES = ['hue-g', 'hue-o', 'hue-p'];
+    let cur = 0;
+    const fill = i => {
+      cur = (i + mates.length) % mates.length;
+      const m = mates[cur], nx = mates[(cur + 1) % mates.length], hue = m.dataset.hue;
+      [bio, $('.drawer-field', bio)].forEach(el => { el.classList.remove(...HUES); el.classList.add(hue); });
+      const img = $('.bio-ph img', bio), src = $('.mate-ph .c', m);
+      img.src = src.currentSrc || src.src; img.alt = $('.mate-ph .g', m).alt;
+      $('#bio-n', bio).textContent = $('.mate-b', m).textContent;
+      $('.role', bio).textContent = $('.role', m).textContent;
+      $('.bio-i', bio).textContent = String(cur + 1).padStart(2, '0');
+      $('.bio-body', bio).innerHTML = $('.mate-bio', m).innerHTML;
+      $('.bio-next .t', bio).textContent = $('.mate-b', nx).textContent;
+      $('.drawer-in', bio).scrollTop = 0;
+    };
+    mates.forEach((m, i) => { const b = $('.mate-b', m); b.addEventListener('click', () => { fill(i); openDlg(bio, () => $('.drawer-x', bio), b); }); });
+    $('.bio-next', bio).addEventListener('click', () => {
+      const body = $('.drawer-in', bio);
+      if (reduce) { fill(cur + 1); return; }
+      body.classList.add('swap');
+      setTimeout(() => { fill(cur + 1); body.classList.remove('swap'); }, 260);
+    });
+    const hit = mates.findIndex(m => '#' + m.id === location.hash);
+    if (hit > -1) { fill(hit); openDlg(bio, () => $('.drawer-x', bio)); }
   }
 
   $$('form.enq').forEach(form => {
