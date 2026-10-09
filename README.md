@@ -8,7 +8,9 @@ Local preview: the `seedone-px3` launch config serves a mirror at http://localho
 | File | What it is |
 |---|---|
 | `index.html` | Homepage |
-| `portfolio.html` | All ten companies from the client copy, filterable by focus area |
+| `what-we-do.html` | What We Do, from the client copy (three focus areas; Defence and Space left out) |
+| `team.html` | Leadership: record of success and the four full bios with photos (`assets/team`) |
+| `portfolio.html` | All ten company profiles in full from the client copy, filterable by focus area |
 | `case-studies/zeltiq.html`, `elusys.html`, `aerin.html` | Case studies, copy from the client document |
 | `contact.html` | Contact page with the enquiry form (also the no-JavaScript fallback for the drawer) |
 | `privacy.html`, `terms.html` | Placeholders until Seed One supplies the policies |
@@ -73,6 +75,8 @@ Checked at 320x568, 375x667, 390x844, 430x932, 600x960, 768x1024, 820x1180, 1024
 - "We forge them." uses a full stop. Jeff asked for three dots in round 1 (20 Sep 2026).
 - The figures (12+, 10+, 1997, $100Ms), the case study facts and the portfolio summaries, which are condensed from the client copy.
 - The research-bench band still says "Now reviewing technologies".
+- The Scott Wolf photo (taken from the supplied file 1699391219879.jpeg).
+- Copy edits to the client text: "Seed-One" set as "Seed One", typos fixed, "track record" heading reworded, "Zeltiq recently filed for an IPO" updated to "completed its IPO in 2011", portfolio profiles in the third person, and "Managing Partner" set as "Managing Director" to match the Team page.
 
 ## Media
 - Hero: Banner 6 (Premiere edit, 29 Sep 2026; the volvox and green-cell shots darkened for legibility), 1920x1080 with audio removed, plus a 1280 version for phones. The finale reuses it very faintly. White hero type clears WCAG contrast on every clip with the standard overlay (headline at least 3.5:1, small text at least 5:1).
