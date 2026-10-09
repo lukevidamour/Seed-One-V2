@@ -244,7 +244,7 @@
       cur = (i + mates.length) % mates.length;
       const m = mates[cur], nx = mates[(cur + 1) % mates.length], hue = m.dataset.hue;
       [bio, $('.drawer-field', bio)].forEach(el => { el.classList.remove(...HUES); el.classList.add(hue); });
-      const img = $('.bio-ph img', bio), src = $('.mate-ph .c', m);
+      const img = $('.bio-ph img', bio), src = $('.mate-ph .g', m);
       img.src = src.currentSrc || src.src; img.alt = $('.mate-ph .g', m).alt;
       $('#bio-n', bio).textContent = $('.mate-b', m).textContent;
       $('.role', bio).textContent = $('.role', m).textContent;

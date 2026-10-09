@@ -611,7 +611,7 @@ p{text-wrap:pretty}
 .wwd-close blockquote p{font-size:var(--h1);letter-spacing:-.055em;line-height:.98;max-width:13em;margin:0 auto}
 .close-b{display:flex;justify-content:center;align-items:center;gap:28px;flex-wrap:wrap;margin-top:clamp(30px,3.2vw,46px)}
 
-/* Team: four portrait cards, staggered. Portraits sit tinted into their colour field and warm to full colour on hover;
+/* Team: four portrait cards, staggered. Portraits stay in natural colour with a soft wash of their colour rising from the bottom-left corner;
    the full bio opens in a side panel (the enquiry drawer's sibling). */
 .people{padding-bottom:clamp(90px,9vw,140px)}
 .crew{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,1.8vw,26px);align-items:start}
@@ -619,9 +619,8 @@ p{text-wrap:pretty}
 .crew .mate:nth-child(2){transition-delay:.08s}.crew .mate:nth-child(3){transition-delay:.16s}.crew .mate:nth-child(4){transition-delay:.24s}
 .mate-ph{display:block;aspect-ratio:4/5;border-radius:var(--r-lg)}
 .mate-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .9s var(--ease),transform 1.4s var(--ease)}
-.mate-ph .g{filter:grayscale(1) contrast(1.06) brightness(1.06);mix-blend-mode:multiply}
-.mate-ph .c{opacity:0}
-.mate:hover .mate-ph .c,.mate:focus-within .mate-ph .c{opacity:1}
+.mate-ph::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(95% 65% at 0% 100%,var(--c1),transparent 72%);opacity:.8;transition:opacity .9s var(--ease)}
+.mate:hover .mate-ph::before{opacity:.45}
 .mate:hover .mate-ph img{transform:scale(1.035)}
 .mate-x{position:absolute;right:14px;bottom:14px;z-index:2;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.82);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:background .4s var(--ease),color .4s var(--ease),transform .6s var(--ease)}
 .mate-x svg{width:16px;height:16px}
