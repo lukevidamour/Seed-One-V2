@@ -678,6 +678,7 @@ p{text-wrap:pretty}
 @media (max-width:560px){
   .areas3,.crit{grid-template-columns:1fr}
   .crit li{min-height:0;gap:28px}
+  .sub .giant{font-size:min(64px,15vw)}
   .apart li{grid-template-columns:40px 1fr}
   .crew{gap:28px 12px}.mate h3{font-size:21px}.mate-sum{font-size:14px}.mate-x{width:36px;height:36px;right:10px;bottom:10px}
   .mate-meta{flex-direction:column;align-items:flex-start;gap:6px;margin-top:14px}
