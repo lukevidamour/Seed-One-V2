@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400..700&display=swap">
 <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/GeistMono-Variable.woff2" crossorigin>
-<link rel="stylesheet" href="../styles.css?v=1791540061">
+<link rel="stylesheet" href="../styles.css?v=1791540183">
 <script>try{var g=JSON.parse(localStorage.getItem('so-gate')||'null');if(!(g&&g.t&&Date.now()-g.t<7*864e5))document.documentElement.classList.add('locked')}catch(e){document.documentElement.classList.add('locked')}</script>
 <script>document.documentElement.classList.add('js');if(location.hash==='#still')document.documentElement.classList.add('still');if(/Chrome\//.test(navigator.userAgent)&&!/Edg\/|OPR\//.test(navigator.userAgent)||/Edg\//.test(navigator.userAgent))document.documentElement.classList.add('lq')</script>
 </head>
@@ -127,13 +127,21 @@ else{msg.textContent='That password is not right.';gate.classList.remove('shake'
   </a>
 </section>
 
-<section class="sub-cta wrap">
-  <div class="sub-cta-in">
-    <div><p class="mono lab">Have a breakthrough?</p><h2 class="fade-h">Let's forge it.</h2></div>
-    <div class="sub-cta-r reveal"><p>If you have technology that could reshape an industry, we want to hear from you.</p>
-    <a class="pill ink" href="../contact.html" data-enquire>Partner with Seed One<span class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-7-7l7 7l-7 7"/></svg></span></a></div>
-  </div>
-</section>
+<div class="finale">
+  <div class="finale-media" aria-hidden="true"><video class="lazy-video" muted loop playsinline preload="none" poster="assets/video/hero-poster.jpg?v=1790674381"><source src="../assets/video/hero-720.mp4?v=1790674381" type="video/mp4"></video></div>
+  <div class="finale-wash grad hue-g wash" aria-hidden="true"></div>
+  <svg class="art" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="10"/><circle cx="100" cy="100" r="19"/><circle cx="100" cy="100" r="28"/><circle cx="100" cy="100" r="37"/><circle cx="100" cy="100" r="46"/><circle cx="100" cy="100" r="55"/><circle cx="100" cy="100" r="64"/><circle cx="100" cy="100" r="73"/><circle cx="100" cy="100" r="82"/><circle cx="100" cy="100" r="91"/></svg>
+  <section class="cta wrap" id="contact" aria-label="Contact">
+    <div class="cta-top">
+      <div class="lab-g"><p class="mono lab">[ Contact ] Have a breakthrough?</p><svg class="lg dots" viewBox="0 0 100 100" aria-hidden="true"><circle cx="22.92" cy="22.92" r="5.71" style="--d:9"/><circle cx="47.24" cy="47.24" r="5.71" style="--d:0"/><circle cx="59.39" cy="59.39" r="5.71" style="--d:1"/><circle cx="35.08" cy="35.08" r="5.71" style="--d:2"/><circle cx="77.08" cy="77.08" r="5.71" style="--d:10"/><circle cx="77.08" cy="59.88" r="5.71" style="--d:5"/><circle cx="77.08" cy="42.70" r="5.71" style="--d:4"/><circle cx="77.08" cy="25.50" r="5.71" style="--d:7"/><circle cx="42.70" cy="77.08" r="5.71" style="--d:3"/><circle cx="59.88" cy="77.08" r="5.71" style="--d:6"/><circle cx="25.50" cy="77.08" r="5.71" style="--d:8"/></svg></div>
+      <div class="cta-r">
+        <p>If you have technology that could reshape an industry, we want to hear from you.</p>
+        <div class="cta-b"><a class="pill ink" href="../contact.html" data-enquire>Partner with Seed One<span class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-7-7l7 7l-7 7"/></svg></span></a><a class="ul" href="../portfolio.html">Explore the portfolio<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-7-7l7 7l-7 7"/></svg></a></div>
+      </div>
+    </div>
+    <h2 class="giant"><span class="ga">Let's</span> <span class="gb">forge it.</span></h2>
+  </section>
+</div>
 </main>
 
 <footer class="foot">
@@ -185,6 +193,6 @@ else{msg.textContent='That password is not right.';gate.classList.remove('shake'
   </div>
 </dialog>
 <script src="../assets/vendor/lenis.min.js?v=1.1.20" defer></script>
-<script src="../main.js?v=1791540061" defer></script>
+<script src="../main.js?v=1791540183" defer></script>
 </body>
 </html>
