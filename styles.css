@@ -605,7 +605,9 @@ p{text-wrap:pretty}
 .speed-cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px);margin-top:clamp(28px,3vw,44px);max-width:46em}
 .speed-cols p{font-size:clamp(17px,1.3vw,19px);line-height:1.55;color:var(--body)}
 .speed-q{margin-top:clamp(36px,4vw,56px);padding-top:22px;border-top:1px solid var(--line);font-size:clamp(20px,1.65vw,24px);letter-spacing:-.015em;line-height:1.35;max-width:24em}
-.wwd-close{text-align:center;padding:clamp(100px,10vw,160px) var(--gut) clamp(90px,9vw,140px)}
+.wwd-close{text-align:center;padding:clamp(130px,13vw,210px) var(--gut) clamp(120px,12vw,190px)}
+.close-sub{font-size:clamp(17px,1.35vw,20px);color:rgba(35,31,32,.78);margin-top:clamp(20px,2.2vw,30px)}
+.wwd-finale>.art{top:-30%}
 .wwd-close blockquote p{font-size:var(--h1);letter-spacing:-.055em;line-height:.98;max-width:13em;margin:0 auto}
 .close-b{display:flex;justify-content:center;align-items:center;gap:28px;flex-wrap:wrap;margin-top:clamp(30px,3.2vw,46px)}
 
