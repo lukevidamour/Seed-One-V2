@@ -192,14 +192,6 @@
 
   /* ---------- portfolio filter ---------- */
   const chips = $$('.pf-filter button');
-  const pfcta = $('#pfcta');
-  const fitCta = () => {                      // the closing card fills the rest of the last row
-    if (!pfcta) return;
-    const cols = getComputedStyle(pfcta.parentElement).gridTemplateColumns.split(' ').length;
-    const n = $$('.pf-card').filter(c => !c.classList.contains('off')).length;
-    pfcta.style.gridColumn = `span ${cols - (n % cols) || cols}`;
-  };
-  if (pfcta) { fitCta(); addEventListener('resize', fitCta); }
   if (chips.length) {
     const cards = $$('.pf-card');
     chips.forEach(b => b.addEventListener('click', () => {
@@ -208,7 +200,6 @@
       cards.forEach(c => c.classList.toggle('off', f !== 'all' && c.dataset.area !== f));
       const n = cards.filter(c => !c.classList.contains('off')).length, live = $('.pf-count');
       if (live) live.textContent = `${n} ${n === 1 ? 'company' : 'companies'}`;
-      fitCta();
     }));
   }
 
